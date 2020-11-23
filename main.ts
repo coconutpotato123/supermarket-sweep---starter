@@ -243,7 +243,7 @@ groceryWeights = [
 0.5,
 5,
 10,
-20
+10
 ]
 groceryCosts = [
 2,
