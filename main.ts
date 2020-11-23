@@ -10,7 +10,7 @@ function addItem (itemImg: Image, cost: number, weight: number, name: string) {
     tiles.placeOnRandomTile(item, myTiles.tile1)
 }
 function addAllItems () {
-    for (let i = 0; i < groceryImages.length; i++) {
+    for (let i = 0; i <= groceryImages.length - 1; i++) {
         addItem(groceryImages[i], groceryCosts[i], groceryWeights[i], groceryNames[i])
     }
 }
@@ -112,19 +112,19 @@ img`
     `,
 img`
     . . . . . . . . . . . . . . . . 
-    . . 6 6 9 9 9 9 . . . . . . . . 
-    . 6 9 9 1 1 1 1 9 . . . . . . . 
-    6 9 6 9 9 9 1 9 1 9 . . . . . . 
-    6 9 9 6 6 6 6 1 1 9 . . . . . . 
-    6 9 9 6 9 9 6 1 1 9 . . . . . . 
-    . 6 9 6 9 9 6 1 9 . . . . . . . 
-    . . 6 9 6 6 1 9 . . . . . . . . 
-    . . . 6 9 9 9 . . . . . . . . . 
-    . . . . 6 6 . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
+    . . . . . . . . e e e . . . . . 
+    . . . . . e e e . . . . . . . . 
+    . e e e e e e e e e e e . . . . 
+    e e . . . . . . e e e . . . . . 
+    . . . . . . e e . . . . . . . . 
+    . . . . e e e e . . . . . . . . 
+    . . . . . e e . . . . . . . . . 
+    . . . . . e e . . . . . . . . . 
+    . . . . . e . . . . . . . . . . 
+    . . . . . e e . . . . . . . . . 
+    . . . . . . e e . . . . . . . . 
+    . . . . . . . e . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `,
@@ -225,7 +225,7 @@ groceryNames = [
 "Grape Soda",
 "Oatmeal",
 "Turkey",
-"Fancy glass",
+"Waffle",
 "Chicken soup",
 "Sardines",
 "Flour",
@@ -251,7 +251,7 @@ groceryCosts = [
 3,
 4,
 20,
-10,
+5.1,
 2,
 1,
 5,
