@@ -2,7 +2,24 @@ namespace SpriteKind {
     export const Grocery = SpriteKind.create()
     export const CartItem = SpriteKind.create()
 }
-let groceryImages = [
+function addItem (itemImg: Image, cost: number, weight: number, name: string) {
+    item = sprites.create(itemImg, SpriteKind.Grocery)
+    sprites.setDataNumber(item, "cost", cost)
+    sprites.setDataNumber(item, "weight", weight)
+    sprites.setDataString(item, "name", name)
+    tiles.placeOnRandomTile(item, myTiles.tile1)
+}
+function addAllItems () {
+    for (let i = 0; i <= groceryImages.length - 1 - 1; i++) {
+        addItem(groceryImages[i], groceryCosts[i], groceryWeights[i], groceryNames[i])
+    }
+}
+let item: Sprite = null
+let groceryCosts: number[] = []
+let groceryWeights: number[] = []
+let groceryNames: string[] = []
+let groceryImages: Image[] = []
+groceryImages = [
 img`
     . . . 2 2 2 . . . . . . . . . . 
     . . . c c c 6 6 8 8 . . . . . . 
@@ -15,6 +32,24 @@ img`
     8 9 9 9 9 9 9 9 9 9 9 8 . . . . 
     8 6 9 9 9 9 9 9 9 9 9 8 . . . . 
     . 8 6 9 9 9 9 9 9 9 6 8 . . . . 
+    . . 8 8 8 8 8 8 8 8 8 . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
+    `,
+img`
+    . . . 2 2 2 . . . . . . . . . . 
+    . . . c c c 6 6 8 8 . . . . . . 
+    . . 6 e e e e e 9 6 8 . . . . . 
+    . 6 e e e e e e 8 9 6 8 . . . . 
+    6 e e e e e e 8 . 8 e 8 . . . . 
+    6 e e e e e e 8 . 8 e 8 . . . . 
+    8 e e e e e e 8 . 8 e 8 . . . . 
+    8 e e e e e e 8 8 e e 8 . . . . 
+    8 e e e e e e e e e e 8 . . . . 
+    8 6 e e e e e e e e e 8 . . . . 
+    . 8 6 e e e e e e e 6 8 . . . . 
     . . 8 8 8 8 8 8 8 8 8 . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -166,8 +201,9 @@ img`
     . . . . 6 6 6 6 6 6 6 . . . . . 
     `
 ]
-let groceryNames = [
+groceryNames = [
 "Milk",
+"Chocolate Milk",
 "Grape Soda",
 "Oatmeal",
 "Turkey",
@@ -177,7 +213,8 @@ let groceryNames = [
 "Flour",
 "Watermelon"
 ]
-let groceryWeights = [
+groceryWeights = [
+8,
 8,
 2,
 1,
@@ -188,8 +225,9 @@ let groceryWeights = [
 5,
 10
 ]
-let groceryCosts = [
+groceryCosts = [
 2,
+7,
 3,
 4,
 20,
@@ -219,3 +257,7 @@ let player = sprites.create(img`
     .d..d......ddddddd...........
     .d..dd......c....c...........
     `, SpriteKind.Player)
+controller.moveSprite(player)
+scene.cameraFollowSprite(player)
+tiles.placeOnTile(player, tiles.getTileLocation(1, 4))
+addAllItems()
