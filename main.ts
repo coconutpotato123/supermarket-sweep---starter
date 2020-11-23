@@ -199,6 +199,24 @@ img`
     . 6 6 7 6 7 7 6 7 6 6 7 6 6 . . 
     . . 6 6 6 6 7 6 7 6 6 6 6 . . . 
     . . . . 6 6 6 6 6 6 6 . . . . . 
+    `,
+img`
+    . . . . . . . . . . . . . f . . 
+    . . . . . . 5 5 . . . . f . f . 
+    . . . . . . 5 5 d 5 5 f . f . . 
+    . . . . . 5 5 5 5 5 5 5 f . . . 
+    . . . . d d 5 d 5 d 5 d 5 . . . 
+    . . . 5 d 5 5 5 d 5 5 5 5 5 . . 
+    . . . f f f f f f f f f f f . . 
+    . . . f f f f f f f f f f f . . 
+    . . . f f f f f f f f f f f . . 
+    . . . . f f f 2 2 2 f f f f . . 
+    . . . . f f f 2 2 2 f f f . . . 
+    . . . . . f f f f f f f f . . . 
+    . . . . . f f f f f f f . . . . 
+    . . . . . . f f f f f . . . . . 
+    . . . . . . . . . . . . . . . . 
+    . . . . . . . . . . . . . . . . 
     `
 ]
 groceryNames = [
@@ -211,7 +229,8 @@ groceryNames = [
 "Chicken soup",
 "Sardines",
 "Flour",
-"Watermelon"
+"Watermelon",
+"Ramen"
 ]
 groceryWeights = [
 8,
@@ -223,7 +242,8 @@ groceryWeights = [
 0.5,
 0.5,
 5,
-10
+10,
+20
 ]
 groceryCosts = [
 2,
@@ -235,7 +255,8 @@ groceryCosts = [
 2,
 1,
 5,
-3
+3,
+15
 ]
 scene.setBackgroundColor(9)
 tiles.setTilemap(tilemap`level`)
