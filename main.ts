@@ -10,7 +10,7 @@ function addItem (itemImg: Image, cost: number, weight: number, name: string) {
     tiles.placeOnRandomTile(item, myTiles.tile1)
 }
 function addAllItems () {
-    for (let i = 0; i <= groceryImages.length - 1 - 1; i++) {
+    for (let i = 0; i < groceryImages.length; i++) {
         addItem(groceryImages[i], groceryCosts[i], groceryWeights[i], groceryNames[i])
     }
 }
