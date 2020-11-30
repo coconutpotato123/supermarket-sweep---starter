@@ -2,6 +2,15 @@ namespace SpriteKind {
     export const Grocery = SpriteKind.create()
     export const CartItem = SpriteKind.create()
 }
+sprites.onOverlap(SpriteKind.Grocery, SpriteKind.Grocery, function (sprite, otherSprite) {
+    tiles.placeOnRandomTile(sprite, myTiles.tile1)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Grocery, function (player, grocery) {
+    if (controller.A.isPressed()) {
+        addToCart(grocery)
+        pause(100)
+    }
+})
 function addItem (itemImg: Image, cost: number, weight: number, name: string) {
     item = sprites.create(itemImg, SpriteKind.Grocery)
     sprites.setDataNumber(item, "cost", cost)
@@ -9,16 +18,63 @@ function addItem (itemImg: Image, cost: number, weight: number, name: string) {
     sprites.setDataString(item, "name", name)
     tiles.placeOnRandomTile(item, myTiles.tile1)
 }
+function createSubTotalSprite () {
+    subTotalSprite = textsprite.create("$0")
+    subTotalSprite.left = 0
+    subTotalSprite.top = 0
+    subTotalSprite.setFlag(SpriteFlag.RelativeToCamera, true)
+}
+scene.onOverlapTile(SpriteKind.Player, myTiles.tile10, function (sprite, location) {
+    reciept = "TOTAL:$" + subtotal
+    cartItems = sprites.allOfKind(SpriteKind.CartItem)
+    for (let c of cartItems) {
+        reciept = "" + reciept + "\n" + sprites.readDataString(c, "name") + "$" + sprites.readDataNumber(c, "cost")
+    }
+    game.showLongText(reciept, DialogLayout.Center)
+    info.setScore(subtotal)
+    game.over(true)
+})
 function addAllItems () {
     for (let i = 0; i <= groceryImages.length - 1; i++) {
         addItem(groceryImages[i], groceryCosts[i], groceryWeights[i], groceryNames[i])
     }
 }
+function addToCart (grocery: Sprite) {
+    cartItem = sprites.create(grocery.image, SpriteKind.CartItem)
+    cartItem.follow(player)
+    cartItem.x = player.x
+    cartItem.y = player.y
+    // Update Subtotal
+    subtotal += sprites.readDataNumber(grocery, "cost")
+    subTotalSprite.setText("$" + subtotal)
+    // Update speed
+    speed += 0 - sprites.readDataNumber(grocery, "weight")
+    // set minimum speed
+    if (speed < 0) {
+        speed = 10
+    }
+    controller.moveSprite(player, speed, speed)
+    // Stores reciept date in cart item
+    name = sprites.readDataString(grocery, "name")
+    cost = sprites.readDataNumber(grocery, "cost")
+    sprites.setDataString(cartItem, "name", name)
+    sprites.setDataNumber(cartItem, "cost", cost)
+}
+let cost = 0
+let name = ""
+let cartItem: Sprite = null
+let cartItems: Sprite[] = []
+let subtotal = 0
+let reciept = ""
+let subTotalSprite: TextSprite = null
 let item: Sprite = null
+let player: Sprite = null
 let groceryCosts: number[] = []
 let groceryWeights: number[] = []
 let groceryNames: string[] = []
 let groceryImages: Image[] = []
+let speed = 0
+speed = 100
 groceryImages = [
 img`
     . . . 2 2 2 . . . . . . . . . . 
@@ -242,8 +298,8 @@ groceryWeights = [
 0.5,
 0.5,
 5,
-10,
-10
+8,
+5
 ]
 groceryCosts = [
 2,
@@ -260,7 +316,7 @@ groceryCosts = [
 ]
 scene.setBackgroundColor(9)
 tiles.setTilemap(tilemap`level`)
-let player = sprites.create(img`
+player = sprites.create(img`
     fffffff......................
     f.fffcd......................
     ..ffddc......................
@@ -278,7 +334,9 @@ let player = sprites.create(img`
     .d..d......ddddddd...........
     .d..dd......c....c...........
     `, SpriteKind.Player)
-controller.moveSprite(player)
+controller.moveSprite(player, speed, speed)
 scene.cameraFollowSprite(player)
 tiles.placeOnTile(player, tiles.getTileLocation(1, 4))
 addAllItems()
+createSubTotalSprite()
+info.startCountdown(25)
