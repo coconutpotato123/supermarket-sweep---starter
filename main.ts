@@ -113,20 +113,20 @@ img`
 img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
-    . . . . . . . . e e e . . . . . 
-    . . . . . e e e . . . . . . . . 
-    . e e e e e e e e e e e . . . . 
-    e e . . . . . . e e e . . . . . 
-    . . . . . . e e . . . . . . . . 
-    . . . . e e e e . . . . . . . . 
-    . . . . . e e . . . . . . . . . 
-    . . . . . e e . . . . . . . . . 
-    . . . . . e . . . . . . . . . . 
-    . . . . . e e . . . . . . . . . 
-    . . . . . . e e . . . . . . . . 
-    . . . . . . . e . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
+    . . . . . e e e e e e . . . . . 
+    . . . . e e f e e e e e . . . . 
+    . . . e e e e e e e f e e . . . 
+    . . e e e e e e e e e e e e . . 
+    . . e e e e e e e e e e e e e . 
+    . e e e e e f e e e e e e f e e 
+    . e f e e e e e e e e e e e e e 
+    . e e e e e e e e e e e e e e e 
+    . e e e e e e e e e e e f e e e 
+    . e e e e f e e e e e e e e e . 
+    . . e e e e e e e e e e e e . . 
+    . . . e e e e e f f e e e e . . 
+    . . . . e e e e e e e e . . . . 
+    . . . . . . e e e e e . . . . . 
     `,
 img`
     . . . . . . . . . . . . . . . . 
@@ -225,7 +225,7 @@ groceryNames = [
 "Grape Soda",
 "Oatmeal",
 "Turkey",
-"Waffle",
+"Cookie",
 "Chicken soup",
 "Sardines",
 "Flour",
@@ -238,7 +238,7 @@ groceryWeights = [
 2,
 1,
 12,
-0.5,
+1,
 0.5,
 0.5,
 5,
@@ -251,7 +251,7 @@ groceryCosts = [
 3,
 4,
 20,
-5.1,
+3,
 2,
 1,
 5,
